@@ -34,6 +34,7 @@ modules = Fsot.Trit
         , Fsot.PhaseD
         , Fsot.Glia
         , Fsot.SelfTalk
+        , Fsot.LiveMind
         , Fsot.Mind
 
 main = Main

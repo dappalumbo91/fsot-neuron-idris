@@ -65,6 +65,7 @@ stepTile t sup load ca clear surges =
             , setAt (cast t) cA ca
             , c1, surges)
 
+public export
 stepAfterSpikes : GliaState -> List Bool -> GliaState
 stepAfterSpikes g fired =
   let n = cast {to=Int} (length fired)

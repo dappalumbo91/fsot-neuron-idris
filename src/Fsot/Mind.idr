@@ -18,6 +18,7 @@ import Fsot.AllenIsiKs as Isi
 import Fsot.ScalpelRate as Scalpel
 import Fsot.Glia as Glia
 import Fsot.SelfTalk as SelfTalk
+import Fsot.LiveMind as Live
 import System
 import System.File
 import Data.String
@@ -91,6 +92,12 @@ runMode "self-talk" = do
   SelfTalk.printReport r
   failIf (not r.stOk) "FSOT_SELF_TALK FAIL"
 runMode "self_talk" = runMode "self-talk"
+runMode "mind" = Live.runLiveMind
+runMode "live" = Live.runLiveMind
+runMode "live-mind" = Live.runLiveMind
+runMode "connected" = Live.runLiveMind
+runMode "awake" = Live.runLiveMind
+runMode "mind-auto" = Live.runLiveMindAuto 120
 runMode "suite" = do
   PhaseA.runPhaseA
   putStrLn "FSOT_SUITE PASS"
