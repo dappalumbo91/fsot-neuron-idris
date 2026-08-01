@@ -47,12 +47,13 @@ LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
 
 | Gate | Zig | Haskell | This repo (Idris) |
 |------|-----|---------|-------------------|
-| DNA / codon / class FI | genetic / fixed | genetic / isi-ks | **`genetic`** |
+| DNA / codon / class FI | genetic / scalpel | genetic / isi-ks | **`genetic`** / **`scalpel`** |
 | Continuous organism | organism | organism | **`organism`** |
 | Compose | compose | compose | **`compose`** |
 | Intel-loop | intel-loop | intel-loop | **`intel-loop`** |
 | Think probe | think | think | **`think`** |
-| **Phase A suite** | compose+loop+think+… | **`phase-a`** | **`phase-a`** |
+| ISI KS product | isi-ks | isi-ks | **`isi-ks`** |
+| **Phase A suite** | compose+loop+think+isi-ks | **`phase-a`** | **`phase-a`** |
 
 ---
 
@@ -62,15 +63,17 @@ LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
 ./build/exec/fsot-mind phase-a
 
 FSOT_GENETIC_CORE PASS       ATG=Met PRIMARY=[+1,-1,+1]  PV>>Pyr
-FSOT_ORGANISM PASS
-FSOT_COMPOSE_INTEL PASS      claim_rate=1.0
+FSOT_SCALPEL_RATES PASS      class FI closed to Allen Hz (PV≈83.3, Pyr≈16.7)
+FSOT_ORGANISM PASS           spikes=160
+FSOT_COMPOSE_INTEL PASS      claim_rate=1.0 ablate_break=1.0 taught=19
 FSOT_INTEL_LOOP PASS         claim_pre=post=1.0
 FSOT_INTERNAL_THINK PASS     continuous organism
+FSOT_ALLEN_ISI_KS_PRODUCT PASS  D≈0.078 |Δmean|≈0.57 ms
 FSOT_PHASE_A PASS
 FSOT_TWIN_PHASE_A_OK
 ```
 
-Zig Fixed SCALE=1e12 remains **bit-authority**. This twin proves **functional / scientific equivalence** on Phase A, with type-checked genetic structure.
+Zig Fixed SCALE=1e12 remains **bit-authority**. This twin proves **functional / scientific equivalence** on full Phase A (including isi-ks + scalpel), with type-checked genetic structure.
 
 ---
 

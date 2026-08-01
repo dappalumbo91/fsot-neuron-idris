@@ -1,0 +1,10 @@
+=== FSOT SCALPEL RATES (Allen Cre class FI - IDRIS) ===
+doctrine: genetic ORF seed + adjustToward; |rate-target| Hz; PV>>Pyr; no free FI tables
+Pyr target=16.35121532610921 measured=16.666666666666668 abs_err=0.31545134055745905 tol=0.33 rel_err=0.019292225945661316 closed=True
+PV target=83.3504049172855 measured=83.33333333333333 abs_err=0.01707158395217334 tol=1.67 rel_err=2.048170488087572e-4 closed=True
+SST target=29.538052683455557 measured=29.166666666666668 abs_err=0.3713860167888896 tol=0.59 rel_err=0.012573138140447056 closed=True
+VIP target=34.81541758294487 measured=35.0 abs_err=0.18458241705513245 tol=0.7 rel_err=0.005301743591481562 closed=True
+pv_faster_than_pyr=True iters=11
+FSOT_SCALPEL_RATES PASS
+FSOT_ALLEN_CLASS_RATES_CLOSED
+FSOT_IDRIS_SCALPEL_OK

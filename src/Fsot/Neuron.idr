@@ -1,5 +1,8 @@
-||| Neuron step — twin of Zig neuron_fixed (host Double).
+||| Neuron step — twin of Zig neuron_fixed / Haskell host Double.
+||| Drive factors match Haskell (psiCon / etaEff) for spike-count parity.
 module Fsot.Neuron
+
+import Fsot.Seeds
 
 %default covering
 
@@ -26,7 +29,7 @@ record StepOut where
 
 public export
 defaultNeuron : Neuron
-defaultNeuron = MkNeuron 0.45 0 0.0 0 1.05 12 0.7 0.02 0.988 0.45 13.0
+defaultNeuron = MkNeuron 0.45 0 0.0 0 1.05 12 0.7 0.02 0.988 0.45 neuroDEff
 
 public export
 step : Neuron -> Double -> (Neuron, StepOut)
@@ -34,7 +37,8 @@ step n stim =
   let inRef = n.nRefractory > 0
       adapt' = n.nAdapt * n.nAdaptDecay
       stimEff = max (-0.5) (min 1.5 (stim - adapt'))
-      drive = stimEff * 0.22 * (n.nDEff / 13.0)
+      -- Match Haskell twin: psiCon / etaEff seed coupling on drive
+      drive = stimEff * 0.22 * (n.nDEff / 13.0) * (0.9 + 0.1 * psiCon) * (0.95 + 0.05 * etaEff)
       sCand = if inRef then n.nRestingS * 0.5 else n.nS * 0.90 + drive + n.nRestingS * 0.02
       fired = not inRef && sCand >= n.nFireThr
   in if fired

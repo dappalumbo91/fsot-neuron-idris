@@ -9,7 +9,10 @@ import Fsot.IntelLoop as Loop
 import Fsot.ComposeIntel as Compose
 import Fsot.InternalThink as Think
 import Fsot.PhaseA as PhaseA
+import Fsot.AllenIsiKs as Isi
+import Fsot.ScalpelRate as Scalpel
 import System
+import System.File
 import Data.String
 
 %default covering
@@ -18,8 +21,8 @@ export
 usage : String
 usage = unlines
   [ "usage: fsot-mind <mode>"
-  , "  phase-a       = genetic + organism + compose + intel-loop + think"
-  , "  genetic|organism|compose|intel-loop|think|suite|stress"
+  , "  phase-a       = genetic + scalpel + organism + compose + intel-loop + think + isi-ks"
+  , "  genetic|scalpel|organism|compose|intel-loop|think|isi-ks|suite|stress"
   , "  codon|parity|selftest|help"
   ]
 
@@ -83,6 +86,23 @@ runMode "think" = do
   let r = Think.runThinkProbe
   Think.printReport r
   failIf (not r.trOk) "FSOT_THINK FAIL"
+runMode "isi-ks" = do
+  failIf (not Isi.selfTest) "FSOT_ISI_KS SELFTEST FAIL"
+  let targets = "data/allen/allen_dist_targets.txt"
+      s256 = "data/allen/allen_sample_256.txt"
+      s128 = "data/allen/allen_sample_128.txt"
+  Right _ <- readFile targets
+    | Left _ => do
+        putStrLn ("missing " ++ targets)
+        exitFailure
+  r <- Isi.runIsiKsProduct targets s256 s128
+  Isi.printReport r
+  failIf (not r.prOk) "FSOT_ISI_KS FAIL"
+runMode "scalpel" = do
+  let r = Scalpel.runScalpel
+  Scalpel.printReport r
+  failIf (not r.srOk) "FSOT_SCALPEL FAIL"
+runMode "class-rates" = runMode "scalpel"
 runMode "parity" = do
   putStrLn "=== FSOT PARITY (Idris Phase A) ==="
   putStrLn $ "codon=" ++ show Codon.selfTest
@@ -91,9 +111,11 @@ runMode "parity" = do
   putStrLn $ "intel_loop=" ++ show Loop.selfTest
   putStrLn $ "compose=" ++ show Compose.selfTest
   putStrLn $ "think=" ++ show Think.selfTest
+  putStrLn $ "isi_ks_selftest=" ++ show Isi.selfTest
+  putStrLn $ "scalpel_order=" ++ show Scalpel.selfTest
   putStrLn "FSOT_PARITY_REPORT_OK"
 runMode m = do
   putStrLn $ "=== FSOT MODE " ++ m ++ " ==="
   putStrLn "FSOT_PORT_IN_PROGRESS"
-  putStrLn "Phase A path: phase-a | genetic | organism | compose | intel-loop | think"
+  putStrLn "Phase A path: phase-a | genetic | scalpel | organism | compose | intel-loop | think | isi-ks"
   exitWith (ExitFailure 2)

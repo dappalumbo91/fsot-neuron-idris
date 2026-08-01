@@ -18,6 +18,8 @@ modules = Fsot.Trit
         , Fsot.Genotype
         , Fsot.BioProbe
         , Fsot.GeneticCore
+        , Fsot.AllenIsiKs
+        , Fsot.ScalpelRate
         , Fsot.Neuron
         , Fsot.Memory
         , Fsot.Organism

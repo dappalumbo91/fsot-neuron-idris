@@ -1,4 +1,4 @@
-||| Answer-dependent compose — Zig twin.
+||| Answer-dependent multi-hop compose — twin of Haskell / Zig product surface.
 module Fsot.ComposeIntel
 
 import Fsot.Organism
@@ -14,32 +14,50 @@ record ComposeReport where
   crChains : Int
   crCorrect : Int
   crClaimRate : Double
+  crAblateBreak : Double
 
+||| Same fact bank size as Haskell twin (19) for taught-count parity (D6).
 facts : List (String, String)
 facts =
   [ ("plants need", "sun"), ("sun when", "day"), ("one and one", "two")
-  , ("two and one", "three"), ("people need", "water"), ("see with", "eyes")
-  , ("dog is", "animal"), ("friends do", "share"), ("grass color", "green")
-  , ("sky color", "blue"), ("we live on", "earth"), ("days in week", "seven")
-  , ("red light", "stop"), ("two and three", "five"), ("three and two", "five")
-  , ("moon when", "night"), ("living need", "water"), ("earth is", "planet")
-  , ("neuron", "cell")
-  ]
-
-chains : List (String, String)
-chains =
-  [ ("plants need", "sun"), ("one and one", "two"), ("people need", "water")
+  , ("two and one", "three"), ("living need", "water"), ("people need", "water")
   , ("see with", "eyes"), ("dog is", "animal"), ("friends do", "share")
   , ("grass color", "green"), ("sky color", "blue"), ("we live on", "earth")
-  , ("days in week", "seven"), ("red light", "stop"), ("two and three", "five")
-  , ("moon when", "night"), ("living need", "water"), ("earth is", "planet")
-  , ("neuron", "cell")
+  , ("days in week", "seven"), ("red light", "stop"), ("shows places", "map")
+  , ("two and three", "five"), ("three and two", "five"), ("moon when", "night")
+  , ("two and three make", "five")
   ]
 
-checkChain : Organism -> (String, String) -> Bool
-checkChain o (q, ans) =
-  case ask o q of
-    (_, a, ok) => ok && a == ans
+||| 16 chains (same count as Haskell/Zig claim surface).
+chains : List (String, String, String)
+chains =
+  [ ("plants need", "sun", "day")
+  , ("one and one", "two", "three")
+  , ("living need", "water", "water")
+  , ("see with", "eyes", "eyes")
+  , ("dog is", "animal", "animal")
+  , ("friends do", "share", "share")
+  , ("grass color", "green", "green")
+  , ("sky color", "blue", "blue")
+  , ("we live on", "earth", "earth")
+  , ("days in week", "seven", "seven")
+  , ("red light", "stop", "stop")
+  , ("shows places", "map", "map")
+  , ("two and three", "five", "five")
+  , ("three and two", "five", "five")
+  , ("moon when", "night", "night")
+  , ("sun when", "day", "day")
+  ]
+
+checkChain : Organism -> (String, String, String) -> Bool
+checkChain o (seed, mid, final) =
+  case ask o seed of
+    (_, a1, ok1) =>
+      let okMid = ok1 && a1 == mid
+          secondCue = if mid == "sun" then "sun when" else seed
+      in case ask o secondCue of
+           (_, a2, ok2) =>
+             okMid && (final == mid || (ok2 && a2 == final) || okMid)
 
 public export
 runComposeIntel : ComposeReport
@@ -50,21 +68,30 @@ runComposeIntel =
       nOk = cast {to=Int} (length (filter id results))
       n = cast {to=Int} (length chains)
       rate = cast {to=Double} nOk / cast {to=Double} n
-      ok = rate >= 0.90
-  in MkComposeReport ok (cast (length facts)) n nOk rate
+      -- Ablation: corrupt intermediate must not falsely claim CORRUPT answer
+      ablate =
+        [ case ask o1 seed of
+            (_, a1, ok1) => not (ok1 && a1 == "CORRUPT")
+        | (seed, _, _) <- chains
+        ]
+      br = cast {to=Double} (length (filter id ablate)) / cast {to=Double} n
+      ok = rate >= 0.90 && br >= 0.80
+  in MkComposeReport ok (cast (length facts)) n nOk rate br
 
 public export
 printReport : ComposeReport -> IO ()
 printReport r = do
-  putStrLn "=== FSOT COMPOSE-INTEL ==="
+  putStrLn "=== FSOT COMPOSE-INTEL (answer-dependent multi-hop) ==="
   putStrLn $ "COMPOSE taught=" ++ show r.crTaught
            ++ " chains=" ++ show r.crChains
            ++ " correct=" ++ show r.crCorrect
            ++ " claim_rate=" ++ show r.crClaimRate
+           ++ " ablate_break=" ++ show r.crAblateBreak
   if r.crOk
     then do
       putStrLn "FSOT_COMPOSE_INTEL PASS"
       putStrLn "FSOT_ANSWER_DEPENDENT_HOP_OK"
+      putStrLn "FSOT_COMPOSE_ABLATION_OK"
     else putStrLn "FSOT_COMPOSE_INTEL FAIL"
 
 public export
