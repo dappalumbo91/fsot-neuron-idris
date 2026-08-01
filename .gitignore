@@ -1,0 +1,8 @@
+build/
+*.ttc
+*.ttm
+*.ibc
+.pack/
+*.tmp
+*~
+.DS_Store

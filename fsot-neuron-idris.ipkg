@@ -1,0 +1,23 @@
+package fsot-neuron-idris
+version = 0.1.0.0
+
+authors = "FSOT"
+maintainers = "FSOT"
+license = "Apache-2.0"
+brief = "FSOT neural mind — Idris2 twin of fsot-neuron-zig / fsot-neuron-haskell"
+
+depends = base, contrib
+
+sourcedir = "src"
+modules = Fsot.Fixed
+        , Fsot.Trit
+        , Fsot.Seeds
+        , Fsot.Codon
+        , Fsot.CellTypes
+        , Fsot.Genotype
+        , Fsot.BioProbe
+        , Fsot.AllenIsiKs
+        , Fsot.Mind
+
+main = Main
+executable = fsot-mind
