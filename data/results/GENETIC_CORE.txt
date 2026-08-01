@@ -1,0 +1,14 @@
+﻿=== FSOT GENETIC CORE (DNA -> trinary -> FSOT FI) ===
+doctrine: physical DNA/codon; PRIMARY A,G=+1 C,T=-1; Allen rates are readout
+see docs/DNA_TRINARY_FSOT.md
+FSOT_CODON PASS ATG=Met PRIMARY=[+1,-1,+1]
+FSOT_GENOTYPE PASS ORF->expression->phenotype
+Pyr genes=4 spin=0.09101474517694523 ref=53 rate_Hz=17.0 isi_ms=62.0 allen_Hz=16.35121532610921
+PV genes=4 spin=0.17463998828429447 ref=5 rate_Hz=100.0 isi_ms=10.0 allen_Hz=83.3504049172855
+SST genes=4 spin=0.053938990794695565 ref=58 rate_Hz=15.0 isi_ms=67.0 allen_Hz=29.538052683455557
+VIP genes=4 spin=0.1554326658273767 ref=55 rate_Hz=16.0 isi_ms=64.0 allen_Hz=34.81541758294487
+order PV_rate=100.0 Pyr_rate=17.0
+FSOT_SCALPEL_ORDER PASS
+FSOT_PV_FASTER_THAN_PYR_OK
+FSOT_GENETIC_CORE PASS
+FSOT_DNA_TRINARY_FSOT_OK

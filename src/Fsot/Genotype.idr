@@ -1,4 +1,11 @@
-||| ORF -> expression -> phenotype -> FI knobs (genetics-as-code).
+||| ORF -> expression -> phenotype -> FI knobs.
+|||
+||| Physical DNA function (class channel gene ORFs) expressed as FSOT trinary:
+|||   SCN / KCN / CACNA / LEAK programs per Cre class
+|||   mutateOrf preserves purine/pyrimidine class (PRIMARY trit-preserving)
+|||   phenotypeFiKnobs: no free FI tables — only expression products + class membrane program
+|||
+||| See docs/DNA_TRINARY_FSOT.md
 module Fsot.Genotype
 
 import Fsot.CellTypes
@@ -7,7 +14,7 @@ import Fsot.Seeds
 import Data.String
 import Data.List
 
-%default total
+%default covering
 
 public export
 data GeneName = Scn | Kcn | Cacna | Leak
@@ -89,7 +96,8 @@ public export
 mutateOrf : String -> Int -> Int -> String
 mutateOrf dna unitId locus =
   let chars = unpack dna
-      n = length chars
+      n : Int
+      n = cast (length chars)
   in if n == 0 then dna
      else
        let nMut = 1 + (unitId `mod` 4)
@@ -160,17 +168,18 @@ geneIndex Kcn = 1
 geneIndex Cacna = 2
 geneIndex Leak = 3
 
+mkGene : Int -> CellType -> Bool -> GeneName -> GeneProgram
+mkGene unitId ct diversity name =
+  let base = classOrf ct name
+      dna = if diversity then mutateOrf base unitId (geneIndex name) else base
+      g = buildGeneProgram name dna
+  in { gpExpression := clampD 0.05 3.5 g.gpExpression } g
+
 public export
 buildCellTypeGenotype : Int -> CellType -> Bool -> (Phenotype, List GeneProgram)
 buildCellTypeGenotype unitId ct diversity =
   let names = [Scn, Kcn, Cacna, Leak]
-      genes =
-        [ let base = classOrf ct name
-              dna = if diversity then mutateOrf base unitId (geneIndex name) else base
-              g = buildGeneProgram name dna
-          in { gpExpression := clampD 0.05 3.5 g.gpExpression } g
-        | name <- names
-        ]
+      genes = map (mkGene unitId ct diversity) names
       ph0 = phenotypeFromGenes genes
       ph = applyClassNudge ct ph0
   in (ph, genes)
@@ -199,7 +208,7 @@ phenotypeFiKnobs ph =
               refFi = clampD 25 140 refFi1
               refI = the Int (cast refFi)
               a = clampD 0 0.55 allenAd
-              d0 = (2.0 * a * max 8.0 refFi) / (9.0 * (1.0 - a) + 1e-9)
+              d0 = (2.0 * a * max 8.0 refFi) / (9.0 * (1.0 - a) + 0.000000001)
               d1 = d0 * 1.85 * clampD 0.5 1.6 (ph.phAdaptStep / 0.7)
               d = clampD 0.08 10 (d1 * (1.0 + 0.35 * spin))
               g = clampD 0.022 0.09 (ph.phAdaptGain * 1.35 * (1.0 + 0.20 * abs spin))
