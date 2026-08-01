@@ -16,6 +16,8 @@ import Fsot.BioLearn as Bio
 import Fsot.BioEmbodied as Emb
 import Fsot.AllenIsiKs as Isi
 import Fsot.ScalpelRate as Scalpel
+import Fsot.Glia as Glia
+import Fsot.SelfTalk as SelfTalk
 import System
 import System.File
 import Data.String
@@ -78,6 +80,17 @@ runMode "bio-converse" = do
   let r = Emb.runConverse
   Emb.printConverse r
   failIf (not r.cvOk) "FSOT_BIO_CONVERSE FAIL"
+runMode "glia-ca" = do
+  let r = Glia.runGliaProduct 120
+  Glia.printGliaProduct r
+  failIf (not r.gpOk) "FSOT_GLIA FAIL"
+runMode "glia-product" = runMode "glia-ca"
+runMode "astrocyte" = runMode "glia-ca"
+runMode "self-talk" = do
+  let r = SelfTalk.runSelfTalk
+  SelfTalk.printReport r
+  failIf (not r.stOk) "FSOT_SELF_TALK FAIL"
+runMode "self_talk" = runMode "self-talk"
 runMode "suite" = do
   PhaseA.runPhaseA
   putStrLn "FSOT_SUITE PASS"

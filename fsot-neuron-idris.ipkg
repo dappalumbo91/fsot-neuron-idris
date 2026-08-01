@@ -32,6 +32,8 @@ modules = Fsot.Trit
         , Fsot.PhaseB
         , Fsot.PhaseC
         , Fsot.PhaseD
+        , Fsot.Glia
+        , Fsot.SelfTalk
         , Fsot.Mind
 
 main = Main
