@@ -1,96 +1,133 @@
 # FSOT NEURON Idris
 
-**Fluid Spacetime Omni-Theory (FSOT) neural mind — full-capability Idris2 twin** of the Zig domain engine (and Haskell sibling).
+**Fluid Spacetime Omni-Theory (FSOT) neural mind — Idris 2 host twin of the Zig domain engine.**
 
-**Doctrine:** full capable copy of Zig — not a single-gate demo. See [`docs/FULL_CAPABILITY_PARITY.md`](docs/FULL_CAPABILITY_PARITY.md).
+Not a second theory. Same law, same DNA→trinary→FSOT genetics, same Phase A product function, measured to the **same accuracy gates** as Zig and Haskell.
 
-| | |
-|--|--|
-| **Zig authority** | [fsot-neuron-zig](https://github.com/dappalumbo91/fsot-neuron-zig) |
-| **Haskell twin** | [fsot-neuron-haskell](https://github.com/dappalumbo91/fsot-neuron-haskell) |
-| **This repo** | Desktop · `FSOT NEURON idris` |
-| **Language** | [Idris 2](https://www.idris-lang.org/) (dependent types) |
-| **Law pin** | D1D38A · same genetics-as-code / Allen readout doctrine |
+Idris adds a **type-checked structure layer** over genetic programs (biological hygiene as machine-checked form).
 
-Not a second theory. Same fold, same codon spine, same ISI KS product path — expressed in a language built for **correctness** and proofs.
+---
 
-## Why Idris
+## Language twins network (linking system)
 
-You have not written Idris before; that is fine. Idris 2 is a pure functional language with **dependent types** (types can depend on values). For FSOT this is useful later for stating “every cell closed” or KS bounds as type-level properties. v0.1 is a faithful runtime twin first.
-
-## Layout
+| Role | Language | Repository |
+|------|----------|------------|
+| **Authority** | Zig | [fsot-neuron-zig](https://github.com/dappalumbo91/fsot-neuron-zig) |
+| **Host twin** | Haskell | [fsot-neuron-haskell](https://github.com/dappalumbo91/fsot-neuron-haskell) |
+| **This twin** | Idris 2 | [fsot-neuron-idris](https://github.com/dappalumbo91/fsot-neuron-idris) |
 
 ```text
-FSOT NEURON idris/
-  fsot-neuron-idris.ipkg
-  src/Main.idr
-  src/Fsot/{Fixed,Trit,Seeds,Codon,CellTypes,Genotype,BioProbe,AllenIsiKs,Mind}.idr
-  data/allen/          # Allen CSV samples (from Zig/Haskell)
-  docs/PORT_FROM_ZIG.md
-  scripts/install_idris2_wsl.sh
+         FSOT pin D1D38A  ·  DNA/codon → trinary → FI  ·  Allen ms/Hz
+                              |
+              +---------------+---------------+
+              |               |               |
+           [Zig]          [Haskell]        [Idris]
+         Fixed+QEMU       Phase A+KS      this repo
+              |               |               |
+              +--- same function · same accuracy ---+
 ```
 
-## Prerequisites (this lab)
+**Full linking system (read this first):**  
+[`docs/LANGUAGE_TWINS_NETWORK.md`](docs/LANGUAGE_TWINS_NETWORK.md)
 
-Install once inside **WSL2 Ubuntu** (pack + Idris2 bootstrap needs Linux tools + Chez Scheme):
+**DNA physical function via trinary + FSOT:**  
+[`docs/DNA_TRINARY_FSOT.md`](docs/DNA_TRINARY_FSOT.md)
+
+**Phase A parity across languages:**  
+[`docs/PHASE_A_PARITY.md`](docs/PHASE_A_PARITY.md)
+
+### Cross-language boot (same gates)
+
+| Gate | Zig | Haskell | This repo (Idris) |
+|------|-----|---------|-------------------|
+| DNA / codon / class FI | genetic / fixed | genetic / isi-ks | **`genetic`** |
+| Continuous organism | organism | organism | **`organism`** |
+| Compose | compose | compose | **`compose`** |
+| Intel-loop | intel-loop | intel-loop | **`intel-loop`** |
+| Think probe | think | think | **`think`** |
+| **Phase A suite** | compose+loop+think+… | **`phase-a`** | **`phase-a`** |
+
+---
+
+## Measured accuracy (lab boot)
+
+```text
+./build/exec/fsot-mind phase-a
+
+FSOT_GENETIC_CORE PASS       ATG=Met PRIMARY=[+1,-1,+1]  PV>>Pyr
+FSOT_ORGANISM PASS
+FSOT_COMPOSE_INTEL PASS      claim_rate=1.0
+FSOT_INTEL_LOOP PASS         claim_pre=post=1.0
+FSOT_INTERNAL_THINK PASS     continuous organism
+FSOT_PHASE_A PASS
+FSOT_TWIN_PHASE_A_OK
+```
+
+Zig Fixed SCALE=1e12 remains **bit-authority**. This twin proves **functional / scientific equivalence** on Phase A, with type-checked genetic structure.
+
+---
+
+## Prerequisites (WSL2 Ubuntu)
 
 ```powershell
-# from Windows:
-wsl -e bash "/mnt/c/Users/damia/Desktop/FSOT NEURON idris/scripts/install_idris2_wsl.sh"
+# one-time toolchain
+wsl -e bash -c "bash /mnt/c/Users/damia/Desktop/FSOT\ NEURON\ idris/scripts/install_idris2_wsl.sh"
+# or use already-installed: Idris 2 0.8.0 + pack under ~/.local/bin
 ```
-
-That installs:
-
-- Chez Scheme (scheme)
-- Idris 2 (via pack)
-- `pack` package manager → `~/.local/bin`
 
 ## Build & run
 
 ```bash
-# inside WSL:
+# inside WSL
 export PATH="$HOME/.local/bin:$PATH"
 cd "/mnt/c/Users/damia/Desktop/FSOT NEURON idris"
+# or: git clone https://github.com/dappalumbo91/fsot-neuron-idris.git
 
 idris2 --build fsot-neuron-idris.ipkg
-# or: pack build fsot-neuron-idris.ipkg
-
+./build/exec/fsot-mind phase-a     # full Phase A (recommended)
+./build/exec/fsot-mind think       # continuous organism think probe
+./build/exec/fsot-mind genetic     # DNA → trinary → FSOT FI
 ./build/exec/fsot-mind selftest
-./build/exec/fsot-mind genetic
-./build/exec/fsot-mind scalpel
-./build/exec/fsot-mind isi-ks
+./build/exec/fsot-mind parity
 ```
 
-### Modes (v0.1)
+### High-signal modes
 
-| Mode | Meaning |
-|------|---------|
-| `selftest` | Codon + genotype + KS self tests |
-| `genetic` | Class ORF → FI smoke |
-| `scalpel` | PV ≫ Pyr rate order |
-| `isi-ks` | Full ISI distribution KS product |
+| Mode | What it tests |
+|------|----------------|
+| `phase-a` | Genetic + organism + compose + intel-loop + think |
+| `genetic` | Physical DNA · PRIMARY trinary · class FI · PV≫Pyr |
+| `think` | Continuous organism think probe |
+| `intel-loop` | Train → sleep → prove |
+| `compose` | Answer-dependent multi-hop |
+| `organism` | Continuous tick + episodic memory |
+| `codon` | ATG = Met · PRIMARY = [+1,−1,+1] |
 
-## Product claim (target / measured when green)
+## Layout
 
 ```text
-FSOT_ALLEN_ISI_KS_PRODUCT PASS
-FSOT_IDRIS_ISI_KS_OK
+src/Fsot/   Trit, Codon, Genotype, BioProbe, GeneticCore,
+            Neuron, Memory, Organism, IntelLoop, ComposeIntel,
+            InternalThink, PhaseA, Mind, …
+data/allen/ Allen samples (shared with Zig/Haskell)
+docs/       LANGUAGE_TWINS_NETWORK · DNA_TRINARY_FSOT · PHASE_A_PARITY
 ```
 
-Cross-check:
+## Why Idris in the network
 
-```powershell
-# Zig
-I:\fsot-neuron-zig\zig-out\bin\fsot_mind.exe isi-ks
-# Haskell
-cd "$env:USERPROFILE\Desktop\FSOT NEURON haskell"; cabal run fsot-mind -- isi-ks
-```
+| Layer | Role |
+|-------|------|
+| Runtime twin | Same Phase A gates as Zig/Haskell |
+| Type layer | Codon/ORF/gene programs must type-check — structure proof of DNA→trinary pipeline |
 
-## Port status
+See [`docs/DNA_TRINARY_FSOT.md`](docs/DNA_TRINARY_FSOT.md).
 
-See [`docs/PORT_FROM_ZIG.md`](docs/PORT_FROM_ZIG.md).  
-v0.1 = genetics spine + FI + ISI KS product.  
-Next: tighten proofs / Fixed lattice, more organism modes.
+## Related FSOT GitHub
+
+| Repo | Role |
+|------|------|
+| [FSOT-2.1-Lean](https://github.com/dappalumbo91/FSOT-2.1-Lean) | Law / Lean |
+| [FSOT-2.1-Neural](https://github.com/dappalumbo91/FSOT-2.1-Neural) | Wet-lab / banks |
 
 ## License
 
