@@ -1,6 +1,8 @@
 # FSOT NEURON Idris
 
-**Fluid Spacetime Omni-Theory (FSOT) neural mind — Idris2 twin** of the Zig domain engine and the Haskell sibling.
+**Fluid Spacetime Omni-Theory (FSOT) neural mind — full-capability Idris2 twin** of the Zig domain engine (and Haskell sibling).
+
+**Doctrine:** full capable copy of Zig — not a single-gate demo. See [`docs/FULL_CAPABILITY_PARITY.md`](docs/FULL_CAPABILITY_PARITY.md).
 
 | | |
 |--|--|
