@@ -1,10 +1,10 @@
 package fsot-neuron-idris
-version = 0.2.1.0
+version = 0.3.0.0
 
 authors = "FSOT"
 maintainers = "FSOT"
 license = "Apache-2.0"
-brief = "FSOT neural mind — DNA/trinary/FSOT genetic spine (Idris2)"
+brief = "FSOT neural mind — Phase A full twin of fsot-neuron-zig"
 
 depends = base, contrib
 
@@ -18,6 +18,13 @@ modules = Fsot.Trit
         , Fsot.Genotype
         , Fsot.BioProbe
         , Fsot.GeneticCore
+        , Fsot.Neuron
+        , Fsot.Memory
+        , Fsot.Organism
+        , Fsot.IntelLoop
+        , Fsot.ComposeIntel
+        , Fsot.InternalThink
+        , Fsot.PhaseA
         , Fsot.Mind
 
 main = Main

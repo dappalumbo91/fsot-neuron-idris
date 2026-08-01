@@ -1,17 +1,44 @@
-﻿||| Port of Zig src/memory.zig — FULL CAPABILITY MIRROR.
-||| Status: scaffold. Doctrine: full capable copy of Zig, not a demo.
+||| Episodic memory — twin of Zig memory_fixed (host).
 module Fsot.Memory
 
-%default total
+import Data.List
+import Data.String
 
-export
-moduleStatus : String
-moduleStatus = "PORT_IN_PROGRESS"
+%default covering
 
-export
-zigSource : String
-zigSource = "src/memory.zig"
+public export
+record Engram where
+  constructor MkEngram
+  eCue : String
+  eAns : String
 
-export
+public export
+record Store where
+  constructor MkStore
+  sEngrams : List Engram
+
+public export
+emptyStore : Store
+emptyStore = MkStore []
+
+public export
+encode : Store -> String -> String -> Store
+encode st cue ans = MkStore (MkEngram cue ans :: take 511 st.sEngrams)
+
+public export
+retrieve : Store -> String -> (String, Bool)
+retrieve st cue =
+  case find (\e => e.eCue == cue) st.sEngrams of
+    Just e => (e.eAns, True)
+    Nothing =>
+      -- weak overlap
+      case find (\e => isInfixOf cue e.eCue || isInfixOf e.eCue cue) st.sEngrams of
+        Just e => (e.eAns, True)
+        Nothing => ("", False)
+
+public export
 selfTest : Bool
-selfTest = True
+selfTest =
+  let st = encode (encode emptyStore "one and one" "two") "plants need" "sun"
+      (a, ok) = retrieve st "one and one"
+  in ok && a == "two"
