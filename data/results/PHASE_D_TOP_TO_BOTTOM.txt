@@ -1,0 +1,39 @@
+==============================================
+ FSOT PHASE D (Idris twin - scientific packaging)
+==============================================
+order: stamp check -> formula claims -> empirical package -> residual
+parallel stage with Zig + Haskell
+doctrine: LOCAL multi-language intelligence - no server required
+
+--- D1 LEAN STAMP ARTIFACT ---
+LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
+FSOT_LEAN_STAMP_ARTIFACT_OK
+
+--- D2 FORMULA VERIFICATION CLAIMS ---
+formula: S = K*(T1+T2+T3)
+pin: D1D38A185487B452E470AC68ECE2EB45AEB1CA9CE25FC9BF9564C19633FFBE70
+SCALE=1e12 free_parameters=0 toolchain=lean4:v4.31.0
+FSOT_FORMULA_VERIFICATION_OK
+
+--- D3 EMPIRICAL PACKAGE (A+B+C matrix) ---
+phase_a=PASS phase_b=PASS phase_c=PASS languages=3
+allen_isi_ks=PASS bio_learn=PASS bio_io=PASS articulate=PASS converse=PASS
+learning_catch_map=docs/LEARNING_CATCH_EMPIRICAL_MAP.md
+matrix=docs/SCIENTIFIC_PHASE_MATRIX.md
+certificate=docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md
+FSOT_EMPIRICAL_PACKAGE_OK
+FSOT_LOCAL_DISSEMINATION_OK server_required=false
+
+--- D4 STRESS RESIDUAL ---
+=== FSOT COMPOSE-INTEL (answer-dependent multi-hop) ===
+COMPOSE taught=19 chains=16 correct=16 claim_rate=1.0 ablate_break=1.0
+FSOT_COMPOSE_INTEL PASS
+FSOT_ANSWER_DEPENDENT_HOP_OK
+FSOT_COMPOSE_ABLATION_OK
+FSOT_STRESS_RESIDUAL PASS
+
+==============================================
+ FSOT_PHASE_D PASS
+ FSOT_SCIENTIFIC_PACKAGING_OK
+ FSOT_TWIN_PHASE_D_OK
+==============================================

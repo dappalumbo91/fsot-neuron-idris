@@ -11,6 +11,7 @@ import Fsot.InternalThink as Think
 import Fsot.PhaseA as PhaseA
 import Fsot.PhaseB as PhaseB
 import Fsot.PhaseC as PhaseC
+import Fsot.PhaseD as PhaseD
 import Fsot.BioLearn as Bio
 import Fsot.BioEmbodied as Emb
 import Fsot.AllenIsiKs as Isi
@@ -28,6 +29,7 @@ usage = unlines
   , "  phase-a       = genetic + scalpel + organism + compose + intel-loop + think + isi-ks"
   , "  phase-b       = bio-learn experience intelligence + stress residual"
   , "  phase-c       = embodied I/O (bio-io + articulate + converse)"
+  , "  phase-d       = scientific packaging (Lean stamp + matrix)"
   , "  bio-learn|bio-io|bio-articulate|bio-converse|genetic|scalpel|..."
   , "  codon|parity|selftest|help"
   ]
@@ -53,6 +55,11 @@ runMode "phase_c" = PhaseC.runPhaseC
 runMode "phasec" = PhaseC.runPhaseC
 runMode "embodied" = PhaseC.runPhaseC
 runMode "embodied-io" = PhaseC.runPhaseC
+runMode "phase-d" = PhaseD.runPhaseD
+runMode "phase_d" = PhaseD.runPhaseD
+runMode "phased" = PhaseD.runPhaseD
+runMode "scientific" = PhaseD.runPhaseD
+runMode "scientific-packaging" = PhaseD.runPhaseD
 runMode "bio-learn" = do
   let r = Bio.runBioLearn
   Bio.printReport r
