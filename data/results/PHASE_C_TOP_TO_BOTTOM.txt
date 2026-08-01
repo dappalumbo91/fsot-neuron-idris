@@ -1,0 +1,40 @@
+==============================================
+ FSOT PHASE C (Idris twin - embodied I/O)
+==============================================
+order: bio-io -> bio-articulate -> bio-converse -> stress residual
+parallel stage with Zig + Haskell
+
+--- C1 BIO-IO ---
+=== FSOT BIO I/O (afferent routes + efferent speech re-afferent) ===
+doctrine: thal/sens/assoc/hipp spirit; motor->sound; not next-token
+BIO_IO path=True bus=True V_spikes=6 A_spikes=6 intero=True speak_rt=True syl=4 hear=6/6 top1=1.0
+FSOT_BIO_IO PASS
+
+--- C2 BIO-ARTICULATE ---
+=== FSOT BIO ARTICULATE (teach->retrieve->motor->self-hear; NOT chat layer) ===
+doctrine: SPEECH_ORGAN spirit - meaning->motor; English as stored engram codec
+BIO_ART taught=10 retrieve=10/10 motor=10/10 self=10/10 last_utter="dog is an animal"
+FSOT_BIO_ARTICULATE PASS
+
+--- C3 BIO-CONVERSE ---
+=== FSOT BIO CONVERSE (multi-turn think-from-memory -> articulate) ===
+doctrine: human exchange via retrieve+engram+motor - NOT an LLM chat layer
+BIO_CONVERSE studied=12 turns=8 ans=8/8 context=8/8 motor=8 self=8 encoded=8 phase_ok=8/8 sme_enc=8 eeg_ok=True last_said="blue" not_llm=True
+FSOT_BIO_CONVERSE PASS
+FSOT_THINK_FROM_MEMORY_OK
+FSOT_MULTI_TURN_BIO_OK
+FSOT_SPEECH_EEG_PHASE_OK
+
+--- C4 STRESS RESIDUAL ---
+=== FSOT COMPOSE-INTEL (answer-dependent multi-hop) ===
+COMPOSE taught=19 chains=16 correct=16 claim_rate=1.0 ablate_break=1.0
+FSOT_COMPOSE_INTEL PASS
+FSOT_ANSWER_DEPENDENT_HOP_OK
+FSOT_COMPOSE_ABLATION_OK
+FSOT_STRESS_RESIDUAL PASS
+
+==============================================
+ FSOT_PHASE_C PASS
+ FSOT_EMBODIED_IO_OK
+ FSOT_TWIN_PHASE_C_OK
+==============================================

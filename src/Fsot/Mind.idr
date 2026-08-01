@@ -10,7 +10,9 @@ import Fsot.ComposeIntel as Compose
 import Fsot.InternalThink as Think
 import Fsot.PhaseA as PhaseA
 import Fsot.PhaseB as PhaseB
+import Fsot.PhaseC as PhaseC
 import Fsot.BioLearn as Bio
+import Fsot.BioEmbodied as Emb
 import Fsot.AllenIsiKs as Isi
 import Fsot.ScalpelRate as Scalpel
 import System
@@ -25,7 +27,8 @@ usage = unlines
   [ "usage: fsot-mind <mode>"
   , "  phase-a       = genetic + scalpel + organism + compose + intel-loop + think + isi-ks"
   , "  phase-b       = bio-learn experience intelligence + stress residual"
-  , "  bio-learn|genetic|scalpel|organism|compose|intel-loop|think|isi-ks|suite|stress"
+  , "  phase-c       = embodied I/O (bio-io + articulate + converse)"
+  , "  bio-learn|bio-io|bio-articulate|bio-converse|genetic|scalpel|..."
   , "  codon|parity|selftest|help"
   ]
 
@@ -45,12 +48,29 @@ runMode "phase-b" = PhaseB.runPhaseB
 runMode "phase_b" = PhaseB.runPhaseB
 runMode "phaseb" = PhaseB.runPhaseB
 runMode "experience-intelligence" = PhaseB.runPhaseB
+runMode "phase-c" = PhaseC.runPhaseC
+runMode "phase_c" = PhaseC.runPhaseC
+runMode "phasec" = PhaseC.runPhaseC
+runMode "embodied" = PhaseC.runPhaseC
+runMode "embodied-io" = PhaseC.runPhaseC
 runMode "bio-learn" = do
   let r = Bio.runBioLearn
   Bio.printReport r
   failIf (not r.blOk) "FSOT_BIO_LEARN FAIL"
 runMode "bio_learn" = runMode "bio-learn"
 runMode "animal-learn" = runMode "bio-learn"
+runMode "bio-io" = do
+  let r = Emb.runBioIo
+  Emb.printBioIo r
+  failIf (not r.ioOk) "FSOT_BIO_IO FAIL"
+runMode "bio-articulate" = do
+  let r = Emb.runArticulate
+  Emb.printArticulate r
+  failIf (not r.arOk) "FSOT_BIO_ARTICULATE FAIL"
+runMode "bio-converse" = do
+  let r = Emb.runConverse
+  Emb.printConverse r
+  failIf (not r.cvOk) "FSOT_BIO_CONVERSE FAIL"
 runMode "suite" = do
   PhaseA.runPhaseA
   putStrLn "FSOT_SUITE PASS"

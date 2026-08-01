@@ -27,8 +27,10 @@ modules = Fsot.Trit
         , Fsot.ComposeIntel
         , Fsot.InternalThink
         , Fsot.BioLearn
+        , Fsot.BioEmbodied
         , Fsot.PhaseA
         , Fsot.PhaseB
+        , Fsot.PhaseC
         , Fsot.Mind
 
 main = Main
