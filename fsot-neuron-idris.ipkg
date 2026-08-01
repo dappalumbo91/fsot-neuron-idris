@@ -26,7 +26,9 @@ modules = Fsot.Trit
         , Fsot.IntelLoop
         , Fsot.ComposeIntel
         , Fsot.InternalThink
+        , Fsot.BioLearn
         , Fsot.PhaseA
+        , Fsot.PhaseB
         , Fsot.Mind
 
 main = Main

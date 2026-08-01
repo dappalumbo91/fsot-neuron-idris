@@ -1,0 +1,31 @@
+==============================================
+ FSOT PHASE B (Idris twin — experience intelligence)
+==============================================
+order: bio-learn -> stress residual (organism+compose)
+parallel stage with Zig + Haskell
+
+--- B1 BIO-LEARN (experience intelligence) ---
+=== FSOT BIO LEARN EVAL (animal/human learning — NOT LLM benchmarks) ===
+doctrine: one-shot · feedback re-study · interference · transfer · sleep · motor
+NOT using: GSM8K / MMLU / chat Q→A / epoch SGD corpus training
+see: Phase B experience intelligence · parallel with Zig/Haskell
+BIO_LEARN oneshot=8/8 acc=1.0 feedback=0->4/4 improved=True interf_A=8/8 acc=1.0 transfer=6/6 acc=1.0 sleep=6->6 retained=True motor=1
+FSOT_BIO_LEARN PASS
+FSOT_NOT_LLM_BENCHMARK_OK
+FSOT_ANIMAL_LEARN_STYLE_OK
+FSOT_IDRIS_PHASE_B_OK
+
+--- B2 STRESS RESIDUAL (Phase A product floor) ---
+FSOT_ORGANISM PASS
+=== FSOT COMPOSE-INTEL (answer-dependent multi-hop) ===
+COMPOSE taught=19 chains=16 correct=16 claim_rate=1.0 ablate_break=1.0
+FSOT_COMPOSE_INTEL PASS
+FSOT_ANSWER_DEPENDENT_HOP_OK
+FSOT_COMPOSE_ABLATION_OK
+FSOT_STRESS_RESIDUAL PASS
+
+==============================================
+ FSOT_PHASE_B PASS
+ FSOT_EXPERIENCE_INTELLIGENCE_OK
+ FSOT_TWIN_PHASE_B_OK
+==============================================

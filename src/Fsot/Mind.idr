@@ -9,6 +9,8 @@ import Fsot.IntelLoop as Loop
 import Fsot.ComposeIntel as Compose
 import Fsot.InternalThink as Think
 import Fsot.PhaseA as PhaseA
+import Fsot.PhaseB as PhaseB
+import Fsot.BioLearn as Bio
 import Fsot.AllenIsiKs as Isi
 import Fsot.ScalpelRate as Scalpel
 import System
@@ -22,7 +24,8 @@ usage : String
 usage = unlines
   [ "usage: fsot-mind <mode>"
   , "  phase-a       = genetic + scalpel + organism + compose + intel-loop + think + isi-ks"
-  , "  genetic|scalpel|organism|compose|intel-loop|think|isi-ks|suite|stress"
+  , "  phase-b       = bio-learn experience intelligence + stress residual"
+  , "  bio-learn|genetic|scalpel|organism|compose|intel-loop|think|isi-ks|suite|stress"
   , "  codon|parity|selftest|help"
   ]
 
@@ -38,6 +41,16 @@ runMode "help" = putStrLn usage
 runMode "phase-a" = PhaseA.runPhaseA
 runMode "phase_a" = PhaseA.runPhaseA
 runMode "phasea" = PhaseA.runPhaseA
+runMode "phase-b" = PhaseB.runPhaseB
+runMode "phase_b" = PhaseB.runPhaseB
+runMode "phaseb" = PhaseB.runPhaseB
+runMode "experience-intelligence" = PhaseB.runPhaseB
+runMode "bio-learn" = do
+  let r = Bio.runBioLearn
+  Bio.printReport r
+  failIf (not r.blOk) "FSOT_BIO_LEARN FAIL"
+runMode "bio_learn" = runMode "bio-learn"
+runMode "animal-learn" = runMode "bio-learn"
 runMode "suite" = do
   PhaseA.runPhaseA
   putStrLn "FSOT_SUITE PASS"
