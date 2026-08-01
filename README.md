@@ -36,6 +36,13 @@ Idris adds a **type-checked structure layer** over genetic programs (biological 
 **Phase A parity across languages:**  
 [`docs/PHASE_A_PARITY.md`](docs/PHASE_A_PARITY.md)
 
+**Cross-language × Lean 4 scientific certificate (formula + empirical):**  
+[`docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md`](docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md) · stamp [`data/results/LEAN4_STAMP.txt`](data/results/LEAN4_STAMP.txt)
+
+```text
+LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
+```
+
 ### Cross-language boot (same gates)
 
 | Gate | Zig | Haskell | This repo (Idris) |
