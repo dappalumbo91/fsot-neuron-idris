@@ -1,6 +1,6 @@
 # Port map — Zig / Haskell → Idris2
 
-**Zig authority:** `I:\fsot-neuron-zig`  
+**Zig authority:** `fsot-neuron-zig`  
 **Haskell twin:** Desktop `FSOT NEURON haskell` · github.com/dappalumbo91/fsot-neuron-haskell  
 **Idris twin:** Desktop `FSOT NEURON idris` · github.com/dappalumbo91/fsot-neuron-idris  
 
