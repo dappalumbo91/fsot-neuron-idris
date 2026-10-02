@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  IDRIS2_VERSION: "0.8.0"
+
+jobs:
+  build:
+    name: Idris2 build + self-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Chez Scheme and GMP
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q chezscheme libgmp-dev
+      - name: Cache Idris2 install
+        id: idris-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.idris2
+          key: ${{ runner.os }}-idris2-${{ env.IDRIS2_VERSION }}-chez-v1
+      - name: Build Idris2 from source (cache miss only)
+        if: steps.idris-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -fsSL "https://github.com/idris-lang/Idris2/archive/refs/tags/v${IDRIS2_VERSION}.tar.gz" | tar xz -C /tmp
+          cd "/tmp/Idris2-${IDRIS2_VERSION}"
+          make bootstrap SCHEME=chezscheme PREFIX="$HOME/.idris2"
+          make install PREFIX="$HOME/.idris2"
+      - name: Add Idris2 to PATH
+        run: echo "$HOME/.idris2/bin" >> "$GITHUB_PATH"
+      - name: Build package (base + contrib)
+        run: idris2 --build fsot-neuron-idris.ipkg
+      - name: Self-tests
+        run: |
+          ./build/exec/fsot-mind selftest
+          ./build/exec/fsot-mind genetic
+          ./build/exec/fsot-mind parity
+          ./build/exec/fsot-mind phase-a
