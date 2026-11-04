@@ -1,5 +1,7 @@
 ﻿# FSOT NEURON Idris
 
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 **Fluid Spacetime Omni-Theory (FSOT) neural mind â€” Idris 2 host twin of the Zig domain engine.**
 
 Not a second theory. Same law, same DNAâ†’trinaryâ†’FSOT genetics, same Phase A product function, measured to the **same accuracy gates** as Zig and Haskell.
